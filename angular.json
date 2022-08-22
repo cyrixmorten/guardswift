@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "guardswift": "apps/guardswift",
+    "guardswift-e2e": "apps/guardswift-e2e"
+  }
+}
