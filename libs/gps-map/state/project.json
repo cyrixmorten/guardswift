@@ -1,0 +1,29 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/gps-map/state/src",
+  "prefix": "gs",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/gps-map/state"
+      ],
+      "options": {
+        "jestConfig": "libs/gps-map/state/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/gps-map/state/**/*.ts",
+          "libs/gps-map/state/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "scope:state"
+  ]
+}

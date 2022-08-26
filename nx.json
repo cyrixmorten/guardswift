@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "guardswift",
+  "npmScope": "gs",
   "affected": {
     "defaultBase": "main"
   },
@@ -42,5 +42,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "guardswift"
+  "defaultProject": "app-gps-map"
 }

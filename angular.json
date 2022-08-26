@@ -2,7 +2,15 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "guardswift": "apps/guardswift",
-    "guardswift-e2e": "apps/guardswift-e2e"
+    "app-gps-map": "apps/app-gps-map",
+    "authenticate-feature": "libs/authenticate/feature",
+    "authenticate-shell": "libs/authenticate/shell",
+    "authenticate-state": "libs/authenticate/state",
+    "gps-map-feature": "libs/gps-map/feature",
+    "gps-map-shell": "libs/gps-map/shell",
+    "gps-map-state": "libs/gps-map/state",
+    "gps-map-ui": "libs/gps-map/ui",
+    "shared-angular-material": "libs/shared/angular/material",
+    "shared-parse-subclass-util": "libs/shared/parse/subclass-util"
   }
 }

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/parse/subclass-util/src",
+  "prefix": "gs",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/parse/subclass-util"],
+      "options": {
+        "jestConfig": "libs/shared/parse/subclass-util/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/parse/subclass-util/**/*.ts",
+          "libs/shared/parse/subclass-util/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

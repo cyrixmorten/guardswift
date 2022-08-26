@@ -14,7 +14,22 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@gs/authenticate/feature": ["libs/authenticate/feature/src/index.ts"],
+      "@gs/authenticate/shell": ["libs/authenticate/shell/src/index.ts"],
+      "@gs/authenticate/state": ["libs/authenticate/state/src/index.ts"],
+      "@gs/gps-map-shello": ["libs/gps-map/shello/src/index.ts"],
+      "@gs/gps-map/feature": ["libs/gps-map/feature/src/index.ts"],
+      "@gs/gps-map/shell": ["libs/gps-map/shell/src/index.ts"],
+      "@gs/gps-map/state": ["libs/gps-map/state/src/index.ts"],
+      "@gs/gps-map/ui": ["libs/gps-map/ui/src/index.ts"],
+      "@gs/shared-angular-material": [
+        "libs/shared/angular/material/src/index.ts"
+      ],
+      "@gs/shared/parse/subclass-util": [
+        "libs/shared/parse/subclass-util/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
