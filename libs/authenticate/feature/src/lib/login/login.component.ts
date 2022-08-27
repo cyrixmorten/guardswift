@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
       .subscribe(async (params: Params) => {
         const sessionToken = params['sessionToken'];
         if (sessionToken) {
-          console.log('sessionToken')
           await this.auth.become(sessionToken);
           this.router.navigate(['/map'])
         }

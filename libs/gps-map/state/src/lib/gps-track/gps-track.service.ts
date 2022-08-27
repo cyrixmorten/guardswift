@@ -22,7 +22,7 @@ export class GpsTrackService {
   
   public async setTrack(track: Tracker) {
     
-    const response: Blob = await firstValueFrom(this.httpClient.get(track.gpsFile.url(), {
+    const response: Blob = await firstValueFrom(this.httpClient.get(track.gpsFile.url({forceSecure: true}), {
       responseType: 'blob'
     }))
 
