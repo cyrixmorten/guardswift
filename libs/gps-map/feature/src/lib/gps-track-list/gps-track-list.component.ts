@@ -70,7 +70,7 @@ export class GpsTrackListComponent implements OnInit {
   }
 
   async performQuery() {
-    this.gpsTracks = await new TrackerQuery().include('guard').build().descending("createdAt").find();
+    this.gpsTracks = await new TrackerQuery().include('guard').build().descending("createdAt").limit(500).find();
 
     this.cdkVirtualScrollViewport?.checkViewportSize()
   }
