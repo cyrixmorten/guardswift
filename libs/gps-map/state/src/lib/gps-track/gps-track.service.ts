@@ -13,11 +13,6 @@ export class GpsTrackService {
   
   constructor(private httpClient: HttpClient) {}
 
-  public center: google.maps.LatLngLiteral = {
-    lat: 55.362770006020234, 
-    lng: 9.168470598127541
-  }
-
   public gpsData= new BehaviorSubject<GPSData[]>([]);
   
   public async setTrack(track: Tracker) {

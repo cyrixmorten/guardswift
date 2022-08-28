@@ -4,9 +4,10 @@ import { Component } from '@angular/core';
   selector: 'gs-gps-map-page',
   template: `
   <div class="flex flex-col h-screen">
+    <!--
     <mat-toolbar class="mat-elevation-z2" style="z-index: 800">
       <span>GuardSwift GPS Historik</span>
-    </mat-toolbar>
+    </mat-toolbar> -->
     <div class="flex flex-grow">
       <div class="w-38">
         <gs-gps-track-list></gs-gps-track-list>

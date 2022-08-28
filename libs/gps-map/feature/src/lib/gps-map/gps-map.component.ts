@@ -6,17 +6,24 @@ import { GPSData } from '@gs/shared/parse/subclass-util';
 @Component({
   selector: 'gs-gps-map',
   template: `
-    <google-map 
-      height="100%"
-      width="100%"
-      [zoom]="zoom"
-      [center]="center"
-      [options]="options">
-      <map-marker *ngFor="let markerPosition of markerPositions"
-              [position]="markerPosition"
-              [options]="markerOptions"></map-marker>
-      <map-polyline [path]="vertices" [options]="polyLineOptions"></map-polyline>
-    </google-map>
+    <div class="flex flex-row h-screen">
+      <google-map 
+        class="grow"
+        height="100%"
+        width="100%"
+        [zoom]="zoom"
+        [center]="center"
+        [options]="options">
+        <map-marker *ngFor="let markerPosition of markerPositions"
+                [position]="markerPosition"
+                [options]="markerOptions"></map-marker>
+        <map-polyline [path]="vertices" [options]="polyLineOptions"></map-polyline>
+      </google-map>
+      <!--
+      <div class="w-38">
+        <gs-gps-track-list></gs-gps-track-list>
+      </div> -->
+    </div> 
     `,
   
 })
@@ -26,7 +33,7 @@ export class GpsMapComponent implements OnInit, OnDestroy {
     fullscreenControl: false,
     streetViewControl: false,
   }
-  center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
+  center: google.maps.LatLngLiteral = {lat: 56.162939, lng: 10.203921};
   zoom = 12;
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,
@@ -42,7 +49,6 @@ export class GpsMapComponent implements OnInit, OnDestroy {
   constructor(private gpsTrack: GpsTrackService) {}
 
   ngOnInit(): void {
-    this.center = this.gpsTrack.center;
     this.observeGPSData();
   }
 

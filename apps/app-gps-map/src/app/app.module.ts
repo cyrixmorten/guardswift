@@ -26,12 +26,11 @@ export class AppModule {
   constructor(subclassService: RegisterSubclassesService) {
     Parse.initialize('guardswift');
 
-    if (!environment.production) {
-      (Parse as any).serverURL = 'https://gsdev-server.herokuapp.com/parse';
-    } else {
-      (Parse as any).serverURL =
-        'https://guardswift-server.herokuapp.com/parse';
-    }
+    //if (!environment.production) {
+    //  (Parse as any).serverURL = 'https://gsdev-server.herokuapp.com/parse';
+    //} else {
+      (Parse as any).serverURL = 'https://guardswift-server.herokuapp.com/parse';
+    //}
 
     subclassService.register();
   }
