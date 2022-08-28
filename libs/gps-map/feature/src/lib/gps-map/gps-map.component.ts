@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GpsTrackService } from '@gs/gps-map/state';
 import { Subscription } from 'rxjs';
-import { GPSData } from '@gs/shared/parse/subclass-util';
+import { EventLog, GPSData } from '@gs/shared/parse/subclass-util';
 
 @Component({
   selector: 'gs-gps-map',
@@ -19,10 +19,10 @@ import { GPSData } from '@gs/shared/parse/subclass-util';
                 [options]="markerOptions"></map-marker>
         <map-polyline [path]="vertices" [options]="polyLineOptions"></map-polyline>
       </google-map>
-      <!--
-      <div class="w-38">
-        <gs-gps-track-list></gs-gps-track-list>
-      </div> -->
+      
+      <div class="w-72" *ngIf="vertices.length > 0">
+        <gs-eventlog-list (eventlog)="selectEventlog($event)"></gs-eventlog-list>
+      </div>
     </div> 
     `,
   
@@ -65,6 +65,17 @@ export class GpsMapComponent implements OnInit, OnDestroy {
           
       })
     )
+  }
+
+  selectEventlog(eventlog: EventLog) {
+    const {latitude, longitude} = eventlog.position;
+    const markerPosition = {
+      lat: latitude,
+      lng: longitude
+    };
+    this.markerPositions[0] = markerPosition;
+    this.center = markerPosition;
+    this.zoom = 16;
   }
 
   ngOnDestroy(): void {

@@ -14,9 +14,9 @@ import { Tracker } from '@gs/shared/parse/subclass-util';
         <div>{{ trackerData.guard.name}}</div>
       </div>
       <div class="flex text-sm font-light">
-        <div>{{ startDate | date:'shortDate'}}</div>
+        <div>{{ startDate | date:'d/M/yy h:mm'}}</div>
         <div>&nbsp;-&nbsp;</div>
-        <div>{{ endDate | date:'shortDate'}}</div>
+        <div>{{ endDate | date:'d/M/yy h:mm'}}</div>
       </div>
     </div>
   `,

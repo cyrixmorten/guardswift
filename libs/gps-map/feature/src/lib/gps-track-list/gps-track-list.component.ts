@@ -20,13 +20,13 @@ import { Tracker, TrackerQuery } from '@gs/shared/parse/subclass-util';
       <mat-list class="flex-grow tracker-list">
         <cdk-virtual-scroll-viewport 
             [itemSize]="20" 
-            class="h-full">
+            class="w-full h-full">
             <mat-list-item
               *cdkVirtualFor="let gpsTrack of gpsTracks | orderBy: '-createdAt' | filterBy: ['guard.name']: [searchValue]; let odd = odd;"
               [class.alternate]="odd"
               [class.selected]="this.selectedTrack && gpsTrack.id === this.selectedTrack.id"
               (click)="selectTrack(gpsTrack)"
-              class="hover:cursor-pointer h-16"
+              class="hover:cursor-pointer"
               matRipple>
                 <gs-gps-track-entry class="w-full" [tracker]="gpsTrack"></gs-gps-track-entry>
             </mat-list-item>

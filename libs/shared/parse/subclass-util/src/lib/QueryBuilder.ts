@@ -37,17 +37,17 @@ export abstract class QueryBuilder<T extends BaseClass> {
         return this;
     }
 
-    createdBefore(date: Date) {
+    createdBefore(date: Date, compareDate = BaseClass._createdAt) {
         if (date) {
-            this.query.lessThan(BaseClass._createdAt, date as any);
+            this.query.lessThan(compareDate, date as any);
         }
 
         return this;
     }
 
-    createdAfter(date: Date) {
+    createdAfter(date: Date, compareDate = BaseClass._createdAt) {
         if (date) {
-            this.query.greaterThan(BaseClass._createdAt, date as any);
+            this.query.greaterThan(compareDate, date as any);
         }
 
         return this;

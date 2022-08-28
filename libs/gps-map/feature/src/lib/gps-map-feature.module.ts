@@ -7,11 +7,18 @@ import { SharedAngularMaterialModule } from '@gs/shared-angular-material';
 import { FormsModule } from '@angular/forms';
 import { GpsMapUiModule } from '@gs/gps-map/ui';
 import { NgPipesModule } from 'ngx-pipes';
-
+import { EventlogListComponent } from './eventlog-list/eventlog-list.component';
 
 @NgModule({
-  imports: [CommonModule, GpsMapUiModule, NgPipesModule, FormsModule, GoogleMapsModule, SharedAngularMaterialModule],
-  declarations: [GpsMapComponent, GpsTrackListComponent],
+  imports: [
+    CommonModule,
+    GpsMapUiModule,
+    NgPipesModule,
+    FormsModule,
+    GoogleMapsModule,
+    SharedAngularMaterialModule,
+  ],
+  declarations: [GpsMapComponent, GpsTrackListComponent, EventlogListComponent],
   exports: [GpsMapComponent, GpsTrackListComponent],
 })
 export class GpsMapFeatureModule {}
