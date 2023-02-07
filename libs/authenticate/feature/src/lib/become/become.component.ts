@@ -15,9 +15,8 @@ export class BecomeComponent implements OnInit {
       .subscribe(async (params) => {
         const sessionToken = params['sessionToken'];
         if (sessionToken) {
-          console.log('sessionToken')
           await this.auth.become(sessionToken);
-          this.router.navigate(['/map'])
+          await this.router.navigate(['/map'])
         }
       }
     );

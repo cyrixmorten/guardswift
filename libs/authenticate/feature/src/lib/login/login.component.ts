@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
         const sessionToken = params['sessionToken'];
         if (sessionToken) {
           await this.auth.become(sessionToken);
-          this.router.navigate(['/map'])
+          await this.router.navigate(['/map'])
         }
       }
     );

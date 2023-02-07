@@ -7,12 +7,12 @@ import { Subscription } from 'rxjs';
   selector: 'gs-eventlog-list',
   template: `
     <div class="flex flex-col h-full">
-      <mat-toolbar class="mat-elevation-z2" style="z-index: 800"> 
+      <mat-toolbar class="mat-elevation-z2" style="z-index: 800">
         <span>Ankomst tidspunkter</span>
       </mat-toolbar>
       <mat-list class="flex-grow">
-        <cdk-virtual-scroll-viewport 
-            [itemSize]="20" 
+        <cdk-virtual-scroll-viewport
+            [itemSize]="20"
             class="w-full h-full">
             <mat-list-item
               *cdkVirtualFor="let eventLog of eventLogs | orderBy: 'deviceTimestamp'; let odd = odd;"
@@ -23,7 +23,7 @@ import { Subscription } from 'rxjs';
               matRipple>
                 <div class="flex w-full">
                   <div class="text-sm font-light w-12">
-                    {{eventLog.deviceTimestamp | date:'h:mm'}}
+                    {{eventLog.deviceTimestamp | date:'HH:mm'}}
                   </div>
                   <div>{{eventLog.clientName}}</div>
                 </div>
@@ -47,7 +47,7 @@ export class EventlogListComponent implements OnInit, OnDestroy {
   @Output() eventlog = new EventEmitter<EventLog>();
 
   private subscription = new Subscription();
-  
+
   public eventLogs: EventLog[] = [];
   public selectedEventlog!: EventLog;
 

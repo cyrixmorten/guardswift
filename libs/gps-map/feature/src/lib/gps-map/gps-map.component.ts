@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { GpsTrackService } from '@gs/gps-map/state';
 import { Subscription } from 'rxjs';
 import { EventLog, GPSData } from '@gs/shared/parse/subclass-util';
+import {GoogleMap, MapInfoWindow, MapMarker, MapPolyline} from "@angular/google-maps";
 
 @Component({
   selector: 'gs-gps-map',
   template: `
     <div class="flex flex-row h-screen">
-      <google-map 
+      <google-map
         class="grow"
         height="100%"
         width="100%"
@@ -17,17 +18,23 @@ import { EventLog, GPSData } from '@gs/shared/parse/subclass-util';
         <map-marker *ngFor="let markerPosition of markerPositions"
                 [position]="markerPosition"
                 [options]="markerOptions"></map-marker>
-        <map-polyline [path]="vertices" [options]="polyLineOptions"></map-polyline>
+        <map-polyline [path]="vertices" [options]="polyLineOptions" (polylineMouseover)="openInfoWindow($event)"></map-polyline>
+        <map-info-window [position]="center">
+          <div *ngIf="hoverGPSData">
+            {{hoverGPSData.time | date:'d/M/yy HH:mm'}}
+          </div>
+        </map-info-window>
       </google-map>
-      
+
       <div class="w-72" *ngIf="vertices.length > 0">
         <gs-eventlog-list (eventlog)="selectEventlog($event)"></gs-eventlog-list>
       </div>
-    </div> 
+    </div>
     `,
-  
+
 })
 export class GpsMapComponent implements OnInit, OnDestroy {
+  @ViewChild(MapInfoWindow,  { static: true }) pathInfoWindo!: MapInfoWindow;
 
   options: google.maps.MapOptions = {
     fullscreenControl: false,
@@ -42,7 +49,11 @@ export class GpsMapComponent implements OnInit, OnDestroy {
   vertices: google.maps.LatLngLiteral[] = [];
   polyLineOptions: google.maps.PolylineOptions = {
     strokeColor: 'red',
+    clickable: true,
+    editable: true,
+    draggable: false,
   };
+  public hoverGPSData: GPSData | undefined = undefined;
 
   private subscription = new Subscription();
 
@@ -62,9 +73,26 @@ export class GpsMapComponent implements OnInit, OnDestroy {
           if (this.vertices.length > 0) {
             this.center = this.vertices[0];
           }
-          
+
+        this.hoverGPSData = gpsData[0];
+        this.pathInfoWindo.open();
+
       })
     )
+  }
+
+  openInfoWindow(event: google.maps.PolyMouseEvent) {
+    const {latLng, vertex} = event;
+
+    if (latLng) {
+      this.pathInfoWindo.position = latLng;
+    }
+
+    if (vertex) {
+      this.hoverGPSData = this.gpsTrack.gpsData.getValue()[vertex];
+    }
+
+    this.pathInfoWindo.open();
   }
 
   selectEventlog(eventlog: EventLog) {
@@ -76,10 +104,11 @@ export class GpsMapComponent implements OnInit, OnDestroy {
     this.markerPositions[0] = markerPosition;
     this.center = markerPosition;
     this.zoom = 16;
+    this.pathInfoWindo.close();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
 
-} 
+}

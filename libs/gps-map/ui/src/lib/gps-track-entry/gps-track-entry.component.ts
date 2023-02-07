@@ -3,7 +3,7 @@ import { Tracker } from '@gs/shared/parse/subclass-util';
 
 @Component({
   selector: 'gs-gps-track-entry',
-  template: ` 
+  template: `
     <div *ngIf="trackerData">
       <div class="flex text-sm font-light">
         <div>{{ trackerData.createdAt | timeAgo}}</div>
@@ -14,9 +14,9 @@ import { Tracker } from '@gs/shared/parse/subclass-util';
         <div>{{ trackerData.guard.name}}</div>
       </div>
       <div class="flex text-sm font-light">
-        <div>{{ startDate | date:'d/M/yy h:mm'}}</div>
+        <div>{{ startDate | date:'d/M/yy HH:mm'}}</div>
         <div>&nbsp;-&nbsp;</div>
-        <div>{{ endDate | date:'d/M/yy h:mm'}}</div>
+        <div>{{ endDate | date:'d/M/yy HH:mm'}}</div>
       </div>
     </div>
   `,
@@ -33,7 +33,7 @@ export class GpsTrackEntryComponent {
   @Input() set tracker(trackerData: Tracker) {
     this.trackerData = trackerData;
 
-    const { start, end } = trackerData; 
+    const { start, end } = trackerData;
 
     this.startDate = start;
     this.endDate = end;
@@ -41,7 +41,7 @@ export class GpsTrackEntryComponent {
     const durationMs = end.getTime() - start.getTime();
     this.duration = this.parseMillisecondsIntoReadableTime(durationMs)
   };
-    
+
   // https://stackoverflow.com/a/33909506
    parseMillisecondsIntoReadableTime(milliseconds: number): string {
     //Get hours from milliseconds
@@ -58,7 +58,7 @@ export class GpsTrackEntryComponent {
     const seconds = (minutes - absoluteMinutes) * 60;
     const absoluteSeconds = Math.floor(seconds);
     const s = absoluteSeconds > 9 ? absoluteSeconds : '0' + absoluteSeconds;
-  
+
     return h + ':' + m + ':' + s;
   }
 
